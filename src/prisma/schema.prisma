@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Challenge {
+  id Int @id @default(autoincrement())
+  url String @unique
+  top Int
+  left Int
+  bottom Int
+  right Int
+}
