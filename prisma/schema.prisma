@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Challenge {
+  id           Int    @id @default(autoincrement())
+  url          String @unique
+  waldo_top    Int
+  waldo_left   Int
+  waldo_bottom Int
+  waldo_right  Int
+}
