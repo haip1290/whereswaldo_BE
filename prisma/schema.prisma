@@ -16,3 +16,9 @@ model Challenge {
   waldo_bottom Int
   waldo_right  Int
 }
+
+model User {
+  id    Int     @id @default(autoincrement())
+  name  String? @unique
+  score Int
+}
