@@ -16,4 +16,10 @@ const getChallengeById = async (id) => {
   }
 };
 
+const getFirstChallenge = async () => {
+  console.log("Query first challenge");
+  try {
+  } catch (error) {}
+};
+
 module.exports = { getChallengeById };
