@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 
 const challengeRouter = require("./routers/challengeRouter.js");
+const userRouter = require("./routers/userRouter.js");
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.get("/", (req, res) => res.json({ message: "hello world!!!" }));
 
 app.use("/challenge", challengeRouter);
+app.use("/user", userRouter);
 
 app.use((error, req, res, next) => {
   console.error("Internal server error", error);

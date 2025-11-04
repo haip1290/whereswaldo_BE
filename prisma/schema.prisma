@@ -18,7 +18,8 @@ model Challenge {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  name  String? @unique
-  score Int
+  id        Int       @id @default(autoincrement())
+  name      String?   @unique
+  startTime DateTime  @default(now())
+  endTime   DateTime?
 }
