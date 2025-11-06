@@ -16,7 +16,10 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const id = Number(req.params.id);
-  const { name, endTime } = req.body;
+  let { name, endTime } = req.body;
+  if (endTime) {
+    endTime = new Date(endTime);
+  }
   console.log("Updating user ");
   try {
     const updatedUser = await userRepo.updateUser({ id, name, endTime });
