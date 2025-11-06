@@ -16,13 +16,13 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const id = Number(req.params.id);
-  let { name, endTime } = req.body;
-  if (endTime) {
-    endTime = new Date(endTime);
+  let data = req.body;
+  if (data.endTime) {
+    data.endTime = new Date(data.endTime);
   }
   console.log("Updating user ");
   try {
-    const updatedUser = await userRepo.updateUser({ id, name, endTime });
+    const updatedUser = await userRepo.updateUser({ id, data });
     if (!updatedUser) {
       return res
         .status(500)
@@ -40,7 +40,7 @@ const updateUser = async (req, res) => {
     if (error.code === "P2002") {
       return res
         .status(409)
-        .json({ message: `User with name ${name} already taken` });
+        .json({ message: `User with name ${data.name} already taken` });
     }
     console.error("Error creating user ", error);
     return res

@@ -14,20 +14,20 @@ const createUser = async (data) => {
   }
 };
 
-const updateUser = async ({ id, name, endTime }) => {
+const updateUser = async ({ id, data }) => {
   console.log("Update user by id ", id);
   try {
     const updatedUser = await prisma.user.update({
-      data: { name, endTime },
+      data,
       where: { id },
     });
-    console.log("successfully updated user with id ", updateUser.id);
+    console.log("successfully updated user with id ", updatedUser.id);
     return updatedUser;
   } catch (error) {
     // check for prisma error code
     if (error.code === "P2002") {
-      console.error(`Error: The username "${name}" is already taken.`);
-      throw new Error(`Username ${name} is already taken.`);
+      console.error(`Error: The username "${data.name}" is already taken.`);
+      throw new Error(`Username ${data.name} is already taken.`);
     }
     if (error.code === "P2025") {
       console.error(`Error: User with ID ${id} not found.`);
