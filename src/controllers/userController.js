@@ -17,9 +17,13 @@ const createUser = async (req, res) => {
 const updateUser = async (req, res) => {
   const id = Number(req.params.id);
   let data = req.body;
-  if (data.endTime) {
-    data.endTime = new Date(data.endTime);
+  data = data || {};
+  if (!data.name) {
+    const endTime = new Date();
+    data = { endTime };
+    console.log(`Setting server side endtime for user ${id}`);
   }
+
   console.log("Updating user ");
   try {
     const updatedUser = await userRepo.updateUser({ id, data });
